@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyWings - Book & Track Your Flight</title>
+    <link rel="stylesheet" href="styless.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-plane"></i>
+                <span>SkyWings</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#" class="nav-link active" data-section="home">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-section="search">Book Flight</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-section="tracking">Track Flight</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-section="manage">My Bookings</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-section="help">Help</a></li>
+            </ul>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Travel The World With Ease</h1>
+                    <p>Find the best flight deals and book your next adventure</p>
+                    <button class="btn-primary" data-section="search">Book Now</button>
+                </div>
+            </div>
+            
+            <div class="features container">
+                <h2>Why Choose SkyWings?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Safe & Secure</h3>
+                        <p>Your security is our top priority with encrypted bookings</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-globe-americas"></i>
+                        <h3>Global Coverage</h3>
+                        <p>Flights to over 200 destinations worldwide</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-headset"></i>
+                        <h3>24/7 Support</h3>
+                        <p>Round-the-clock customer service for all your needs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section id="search" class="section">
+            <div class="container">
+                <h2>Find Your Perfect Flight</h2>
+                <div class="search-form">
+                    <div class="trip-type">
+                        <button class="trip-btn active" data-trip="one-way">One Way</button>
+                        <button class="trip-btn" data-trip="round-trip">Round Trip</button>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="from">From</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-plane-departure"></i>
+                                <input type="text" id="from" placeholder="City or Airport" list="airports">
+                            </div>
+                        </div>
+                        <div class="swap-button">
+                            <button type="button" id="swap-airports">
+                                <i class="fas fa-exchange-alt"></i>
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <label for="to">To</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-plane-arrival"></i>
+                                <input type="text" id="to" placeholder="City or Airport" list="airports">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="departure">Departure</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                                <input type="date" id="departure">
+                            </div>
+                        </div>
+                        <div class="form-group return-field">
+                            <label for="return">Return</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                                <input type="date" id="return">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="passengers">Passengers</label>
+                            <div class="passenger-selector">
+                                <button type="button" class="passenger-btn" data-type="adults">-</button>
+                                <span id="adults-count">1</span> Adult
+                                <button type="button" class="passenger-btn" data-type="adults">+</button>
+                            </div>
+                            <div class="passenger-selector">
+                                <button type="button" class="passenger-btn" data-type="children">-</button>
+                                <span id="children-count">0</span> Children
+                                <button type="button" class="passenger-btn" data-type="children">+</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="class">Class</label>
+                            <select id="class">
+                                <option value="economy">Economy</option>
+                                <option value="premium">Premium Economy</option>
+                                <option value="business">Business</option>
+                                <option value="first">First Class</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button id="search-flights" class="btn-primary">Search Flights</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="section">
+            <div class="container">
+                <div class="results-header">
+                    <button class="back-btn" data-section="search">
+                        <i class="fas fa-arrow-left"></i> Modify Search
+                    </button>
+                    <h2>Available Flights</h2>
+                </div>
+                <div class="results-summary">
+                    <p>Showing flights from <span id="from-city">New York</span> to <span id="to-city">London</span></p>
+                    <div class="sort-filter">
+                        <div class="sort-options">
+                            <label for="sort">Sort by:</label>
+                            <select id="sort">
+                                <option value="price">Price (Low to High)</option>
+                                <option value="duration">Duration</option>
+                                <option value="departure">Departure Time</option>
+                            </select>
+                        </div>
+                        <div class="filter-options">
+                            <label for="stops">Stops:</label>
+                            <select id="stops">
+                                <option value="all">All</option>
+                                <option value="0">Non-stop</option>
+                                <option value="1">1 Stop</option>
+                                <option value="2">2+ Stops</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="flight-results" class="flight-results">
+                    <!-- Flight results will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section id="booking" class="section">
+            <div class="container">
+                <div class="booking-header">
+                    <button class="back-btn" data-section="results">
+                        <i class="fas fa-arrow-left"></i> Back to Results
+                    </button>
+                    <h2>Complete Your Booking</h2>
+                </div>
+                <div class="booking-container">
+                    <div class="flight-summary">
+                        <h3>Flight Summary</h3>
+                        <div id="selected-flight"></div>
+                        <div class="price-breakdown">
+                            <h4>Price Breakdown</h4>
+                            <div class="price-item">
+                                <span>Base Fare (x<span id="passenger-count">1</span>)</span>
+                                <span id="base-fare">$0</span>
+                            </div>
+                            <div class="price-item">
+                                <span>Taxes & Fees</span>
+                                <span id="taxes">$0</span>
+                            </div>
+                            <div class="price-item">
+                                <span>Service Charge</span>
+                                <span id="service-charge">$0</span>
+                            </div>
+                            <div class="price-item total">
+                                <span>Total</span>
+                                <span id="total-price">$0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="booking-form" class="booking-form">
+                        <h3>Passenger Details</h3>
+                        <div id="passenger-forms">
+                            <!-- Passenger forms will be generated here -->
+                        </div>
+                        
+                        <h3>Contact Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contact-email">Email</label>
+                                <input type="email" id="contact-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-phone">Phone</label>
+                                <input type="tel" id="contact-phone" required>
+                            </div>
+                        </div>
+                        
+                        <h3>Payment Details</h3>
+                        <div class="payment-methods">
+                            <div class="payment-method active" data-method="card">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Credit/Debit Card</span>
+                            </div>
+                            <div class="payment-method" data-method="paypal">
+                                <i class="fab fa-paypal"></i>
+                                <span>PayPal</span>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-details" id="card-details">
+                            <div class="form-group">
+                                <label for="card-name">Name on Card</label>
+                                <input type="text" id="card-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="card-number">Card Number</label>
+                                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expiry">Expiry Date</label>
+                                    <input type="text" id="expiry" placeholder="MM/YY" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="terms-agreement">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></label>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Complete Booking - $<span id="final-price">0</span></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Confirmation Section -->
+        <section id="confirmation" class="section">
+            <div class="container">
+                <div class="confirmation-card">
+                    <div class="confirmation-header">
+                        <i class="fas fa-check-circle"></i>
+                        <h2>Booking Confirmed!</h2>
+                        <p>Your flight has been successfully booked</p>
+                    </div>
+                    <div class="confirmation-details">
+                        <div class="detail-item">
+                            <span>Booking Reference</span>
+                            <span id="booking-ref">SKW789456123</span>
+                        </div>
+                        <div class="detail-item">
+                            <span>Passenger</span>
+                            <span id="passenger-name">John Doe</span>
+                        </div>
+                        <div class="detail-item">
+                            <span>Flight</span>
+                            <span id="confirmation-flight">SKW 789 (New York to London)</span>
+                        </div>
+                        <div class="detail-item">
+                            <span>Departure</span>
+                            <span id="confirmation-date">15 Aug 2023, 08:30 AM</span>
+                        </div>
+                        <div class="detail-item">
+                            <span>Total Paid</span>
+                            <span id="confirmation-price">$845.00</span>
+                        </div>
+                    </div>
+                    <div class="boarding-pass-preview">
+                        <h4>Boarding Pass</h4>
+                        <div class="boarding-pass">
+                            <div class="bp-header">
+                                <span class="bp-airline">SKYWINGS</span>
+                                <span class="bp-flight">SKW 789</span>
+                            </div>
+                            <div class="bp-body">
+                                <div class="bp-from">
+                                    <span class="bp-city" id="bp-from-city">JFK</span>
+                                    <span class="bp-time" id="bp-from-time">08:30</span>
+                                </div>
+                                <div class="bp-divider">
+                                    <i class="fas fa-plane"></i>
+                                </div>
+                                <div class="bp-to">
+                                    <span class="bp-city" id="bp-to-city">LHR</span>
+                                    <span class="bp-time" id="bp-to-time">20:45</span>
+                                </div>
+                            </div>
+                            <div class="bp-footer">
+                                <div class="bp-passenger">
+                                    <span>PASSENGER</span>
+                                    <span id="bp-passenger">JOHN DOE</span>
+                                </div>
+                                <div class="bp-seat">
+                                    <span>SEAT</span>
+                                    <span id="bp-seat">15A</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="confirmation-actions">
+                        <button id="print-ticket" class="btn-secondary">
+                            <i class="fas fa-print"></i> Print Ticket
+                        </button>
+                        <button id="track-flight" class="btn-primary">
+                            <i class="fas fa-radar"></i> Track Flight
+                        </button>
+                        <button id="new-booking" class="btn-secondary">
+                            <i class="fas fa-plus"></i> New Booking
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tracking Section -->
+        <section id="tracking" class="section">
+            <div class="container">
+                <h2>Track Your Flight</h2>
+                <div class="tracking-form">
+                    <div class="form-group">
+                        <label for="tracking-number">Enter Booking Reference or Flight Number</label>
+                        <input type="text" id="tracking-number" placeholder="e.g. SKW789456123 or SKW789">
+                    </div>
+                    <button id="track-flight-btn" class="btn-primary">Track Flight</button>
+                </div>
+                <div id="tracking-results" class="tracking-results">
+                    <!-- Tracking results will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- My Bookings Section -->
+        <section id="manage" class="section">
+            <div class="container">
+                <h2>My Bookings</h2>
+                <div class="bookings-container">
+                    <div id="no-bookings" class="no-bookings">
+                        <i class="fas fa-ticket-alt"></i>
+                        <h3>No Bookings Yet</h3>
+                        <p>You haven't made any bookings yet. Start your journey by booking a flight!</p>
+                        <button class="btn-primary" data-section="search">Book a Flight</button>
+                    </div>
+                    <div id="bookings-list" class="bookings-list hidden">
+                        <!-- Bookings will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Help Section -->
+        <section id="help" class="section">
+            <div class="container">
+                <h2>Help & Support</h2>
+                <div class="help-content">
+                    <div class="faq-section">
+                        <h3>Frequently Asked Questions</h3>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>How do I change my booking?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>You can modify your booking through the "My Bookings" section up to 24 hours before departure.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>What is the baggage allowance?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Economy class: 1 carry-on (7kg) + 1 checked bag (23kg). Business class: 2 carry-on + 2 checked bags (32kg each).</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>How do I get my boarding pass?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Boarding passes are available 24 hours before flight departure through "My Bookings" or at the airport check-in counter.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-section">
+                        <h3>Contact Us</h3>
+                        <div class="contact-info">
+                            <p><i class="fas fa-phone"></i> +1 (800) 123-4567</p>
+                            <p><i class="fas fa-envelope"></i> support@skywings.com</p>
+                            <p><i class="fas fa-clock"></i> 24/7 Customer Support</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SkyWings</h3>
+                    <p>Your trusted partner for air travel. We connect you to destinations around the world with comfort and reliability.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#" data-section="home">Home</a></li>
+                        <li><a href="#" data-section="search">Book Flight</a></li>
+                        <li><a href="#" data-section="tracking">Track Flight</a></li>
+                        <li><a href="#" data-section="manage">My Bookings</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +1 (800) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> support@skywings.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Aviation Ave, New York, NY</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SkyWings Airlines. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Airport Data List -->
+    <datalist id="airports">
+        <option value="New York (JFK)">
+        <option value="London (LHR)">
+        <option value="Paris (CDG)">
+        <option value="Tokyo (NRT)">
+        <option value="Dubai (DXB)">
+        <option value="Singapore (SIN)">
+        <option value="Sydney (SYD)">
+        <option value="Los Angeles (LAX)">
+        <option value="Chicago (ORD)">
+        <option value="Toronto (YYZ)">
+        <option value="Frankfurt (FRA)">
+        <option value="Amsterdam (AMS)">
+        <option value="Hong Kong (HKG)">
+        <option value="Seoul (ICN)">
+        <option value="Bangkok (BKK)">
+    </datalist>
+
+    <script src="script.js"></script>
+</body>
+</html>
